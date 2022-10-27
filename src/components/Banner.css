@@ -1,0 +1,34 @@
+.banner-area {
+  position: relative;
+}
+
+.banner-img {
+  width: 100%;
+  filter: brightness(70%);
+}
+
+.banner-title {
+  color: #e50914;
+  position: absolute;
+  font-size: 60px;
+  top: 350px;
+  left: 100px;
+}
+
+/* .banner-area::before {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: linear-gradient(to right, black, transparent);
+} */
+
+.banner-content {
+  color: white;
+  position: absolute;
+  font-size: 20px;
+  top: 433px;
+  left: 100px;
+  width: 800px;
+}
