@@ -1,3 +1,10 @@
+.container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: black;
+}
+
 .nav-item {
   color: white;
   text-decoration: none;
@@ -6,4 +13,8 @@
 
 .nav-item:hover {
   color: #e50914;
+}
+
+h1 {
+  color: white;
 }
