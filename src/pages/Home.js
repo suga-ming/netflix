@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <div>
       <Banner movie={popularMovies.results[0]} />
-      <div className="container">
+      <div className="wrap">
         <h1>Popular Movie</h1>
         <MovieSlide movies={popularMovies} />
         <h1>Top Rated Movie</h1>
