@@ -7,7 +7,6 @@ const MovieSlide = ({ movies }) => {
   console.log("movie", movies);
   const responsive = {
     superLargeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
       items: 5,
     },
@@ -32,7 +31,6 @@ const MovieSlide = ({ movies }) => {
           <MovieCard item={item} />
         ))}
       </Carousel>
-      ;
     </div>
   );
 };

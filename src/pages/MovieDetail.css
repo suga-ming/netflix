@@ -1,0 +1,88 @@
+.Movie-detail-area {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
+}
+
+.movie-datail-img {
+  margin-right: 50px;
+}
+
+.badge-area {
+  display: flex;
+}
+
+.movie-genre-badge {
+  margin: 0 10px;
+  border-radius: 10px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.movie-detail-title {
+  font-size: 70px;
+}
+
+.movie-detail-vote {
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.movie-detail-star {
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+}
+
+.star {
+  margin-right: 5px;
+}
+
+.people {
+  margin-right: 8px;
+}
+
+.attendance {
+  font-weight: 700;
+  margin-right: 25px;
+}
+
+.movie-detail-adult {
+  color: #e50914;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.movie-story {
+  width: 500px;
+  padding: 30px 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.movie-info-badge {
+  width: 100px;
+  border-radius: 10px;
+  margin-right: 3px;
+}
+
+.movie-info {
+  width: 500px;
+  padding: 30px 0;
+  border-bottom: 1px solid white;
+}
+
+.movie-info-badge-area {
+  margin-bottom: 8px;
+}
+
+.trailer {
+  color: #e50914;
+  margin-right: 7px;
+  margin-top: 30px;
+}

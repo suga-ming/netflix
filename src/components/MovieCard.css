@@ -1,0 +1,38 @@
+h1 {
+  color: white;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.cards {
+  width: 250px;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.hover-card {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cards:hover {
+  /* transform: scale(1.4); */
+}
+
+.cards:hover .hover-card {
+  opacity: 1;
+  background: rgba(43, 41, 41, 0.8);
+  width: 100%;
+  height: 100%;
+  /* width: 400px;
+  height: 300px; */
+}
+
+.cards-title {
+  font-size: 28px;
+  margin-bottom: 10px;
+}

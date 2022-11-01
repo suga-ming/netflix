@@ -1,13 +1,20 @@
 import React from "react";
-import "../App.css";
+import "./MovieCard.css";
 import Badge from "react-bootstrap/Badge";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ item }) => {
+  console.log("item이다", item);
   const { genreList } = useSelector((state) => state.movie);
-  console.log(genreList);
+  const navigate = useNavigate();
+  const goDetailMovie = () => {
+    navigate(`/movies/:${item.id}`);
+  };
+
   return (
     <div
+      onClick={goDetailMovie}
       className="cards"
       style={{
         backgroundImage:
@@ -17,16 +24,18 @@ const MovieCard = ({ item }) => {
       }}
     >
       <div className="hover-card">
-        <div>{item.title}</div>
-        <div>
+        <div className="cards-title">{item.title}</div>
+        <div className="card-genre">
           {item.genre_ids.map((id) => (
             <Badge bg="danger">
               {genreList.find((item) => item.id == id).name}
             </Badge>
           ))}
         </div>
-        <div>{item.vote_average}</div>
-        <div>{item.adult ? "청소년 관람불가" : "adult 18"}</div>
+        <div className="card-vote">{item.vote_average}</div>
+        <div className="card-adult">
+          {item.adult ? "청소년 관람불가" : "adult 18"}
+        </div>
       </div>
     </div>
   );

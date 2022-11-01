@@ -8,11 +8,11 @@ function getMovies() {
       const popularMovieApi = api.get(
         `/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
       );
-      console.log(popularMovieApi);
 
       const topRatedApi = api.get(
         `/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
       );
+
       const upComingApi = api.get(
         `/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
       );
@@ -28,7 +28,6 @@ function getMovies() {
           upComingApi,
           genreApi,
         ]);
-      console.log(`genreList`, genreList);
       dispatch({
         type: "GET_MOVIES_SUCCESS",
         payload: {
