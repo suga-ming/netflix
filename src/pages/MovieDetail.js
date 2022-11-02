@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./MovieDetail.css";
 import Badge from "react-bootstrap/Badge";
 import star from "../img/star.png";
@@ -7,9 +7,16 @@ import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
+import { useParams } from "react-router-dom";
+import { movieAction } from "../redux/actions/movieAction";
 
 const MovieDetail = () => {
   const dispatch = useDispatch();
+  let { id } = useParams();
+  useEffect(() => {
+    console.log("시작");
+    dispatch(movieAction.getMovies(id));
+  }, []);
   const { popularMovies, topRatedMovies, upcomingMovies } = useSelector(
     (state) => state.movie
   );

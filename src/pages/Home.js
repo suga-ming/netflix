@@ -5,6 +5,7 @@ import Banner from "../components/Banner";
 import MovieSlide from "../components/MovieSlide";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();

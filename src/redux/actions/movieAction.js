@@ -1,7 +1,7 @@
 import api from "../api";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
-function getMovies() {
+function getMovies(id) {
   return async (dispatch) => {
     try {
       dispatch({ type: "GET_MOVIES_REQUEST" });
@@ -21,13 +21,29 @@ function getMovies() {
         `/genre/movie/list?api_key=${API_KEY}&language=en-US`
       );
 
-      let [popularMovies, topRatedMovies, upcomingMovies, genreList] =
-        await Promise.all([
-          popularMovieApi,
-          topRatedApi,
-          upComingApi,
-          genreApi,
-        ]);
+      const reviewApi = api.get(
+        `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US&page=1`
+      );
+      console.log("제발", reviewApi);
+
+      // https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
+
+      // console.log("리뷰다2", genreApi);
+      // console.log("리뷰다", reviewApi);
+
+      let [
+        popularMovies,
+        topRatedMovies,
+        upcomingMovies,
+        genreList,
+        reviewList,
+      ] = await Promise.all([
+        popularMovieApi,
+        topRatedApi,
+        upComingApi,
+        genreApi,
+        reviewApi,
+      ]);
       dispatch({
         type: "GET_MOVIES_SUCCESS",
         payload: {
@@ -35,6 +51,7 @@ function getMovies() {
           topRatedMovies: topRatedMovies.data,
           upcomingMovies: upcomingMovies.data,
           genreList: genreList.data.genres,
+          reviewList: reviewList.data,
         },
       });
     } catch (error) {

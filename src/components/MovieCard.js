@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ item }) => {
-  console.log("item이다", item);
+  // console.log("item이다", item);
   const { genreList } = useSelector((state) => state.movie);
   const navigate = useNavigate();
   const goDetailMovie = () => {
-    navigate(`/movies/:${item.id}`);
+    navigate(`/movie/:${item.id}`);
   };
 
   return (
