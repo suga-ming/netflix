@@ -15,7 +15,7 @@ const MovieDetail = () => {
   let { id } = useParams();
   useEffect(() => {
     console.log("시작");
-    dispatch(movieAction.getMovies(id));
+    dispatch(movieAction.getMoviesDetail(id));
   }, []);
   const { popularMovies, topRatedMovies, upcomingMovies } = useSelector(
     (state) => state.movie

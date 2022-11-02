@@ -23,12 +23,16 @@ function movieReducer(state = initialState, action) {
         upcomingMovies: payload.upcomingMovies,
         genreList: payload.genreList,
         loading: false,
-        reviewList: payload.reviewList,
       };
     case "GET_MOVIES_FAILURE":
       return {
         ...state,
         loading: false,
+      };
+    case "GET_MOVIES_DETAIL_SUCCESS":
+      return {
+        ...state,
+        reviewList: payload.reviewList,
       };
 
     default:
