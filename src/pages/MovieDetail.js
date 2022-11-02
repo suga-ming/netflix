@@ -17,9 +17,8 @@ const MovieDetail = () => {
     console.log("시작");
     dispatch(movieAction.getMoviesDetail(id));
   }, []);
-  const { popularMovies, topRatedMovies, upcomingMovies } = useSelector(
-    (state) => state.movie
-  );
+  const { reviewList } = useSelector((state) => state.movie);
+  console.log("뭐양ㅇ", reviewList);
   return (
     <div className="movie-detail-container">
       <div className="Movie-detail-area">
@@ -91,51 +90,12 @@ const MovieDetail = () => {
         REVIEWS (3)
       </Button>{" "}
       <div className="review-area">
-        <div className="reviw-text">
-          dfjklaa umerating objects: 25, done. Counting objects: 100% (25/25),
-          done. Delta compression using up to 2 threads Compressing objects:
-          100% dfjklaa umerating objects: 25, done. Counting objects: 100%
-          (25/25), done. Delta compression using up to 2 threads Compressing
-          objects: 100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB |
-          1.82 MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused
-          0 remote: Resolving deltas: 100% (6/6), completed with 6 local 100%
-          dfjklaa umerating objects: 25, done. Counting objects: 100% (25/25),
-          done. Delta compression using up to 2 threads Compressing objects:
-          100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB | 1.82
-          MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused 0
-          remote: Resolving deltas: 100% (6/6), completed with 6 local 100%
-          dfjklaa umerating objects: 25, done. Counting objects: 100% (25/25),
-          done. Delta compression using up to 2 threads Compressing objects:
-          100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB | 1.82
-          MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused 0
-          remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
-          To https://github.com/suga-ming/netflix.git 9f9f629..813e375 master
-          maste
-        </div>
-        <div className="reviw-text">
-          dfjklaa umerating objects: 25, done. Counting objects: 100% (25/25),
-          done. Delta compression using up to 2 threads Compressing objects:
-          100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB | 1.82
-          MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused 0
-          done. Delta compression using up to 2 threads Compressing objects:
-          100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB | 1.82
-          MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused 0
-          done. Delta compression using up to 2 threads Compressing objects:
-          100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB | 1.82
-          MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused 0
-          remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
-          To https://github.com/suga-ming/netflix.git 9f9f629..813e375 master
-          maste
-        </div>
-        <div className="reviw-text">
-          dfjklaa umerating objects: 25, done. Counting objects: 100% (25/25),
-          done. Delta compression using up to 2 threads Compressing objects:
-          100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB | 1.82
-          MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused 0
-          remote: Resolving deltas: 100% (6/6), completed with 6 local objects.
-          To https://github.com/suga-ming/netflix.git 9f9f629..813e375 master
-          maste
-        </div>
+        {reviewList.map((item) => (
+          <div className="reviw-text">
+            <div>{item.author}</div>
+            <div>{item.content}</div>
+          </div>
+        ))}
       </div>
     </div>
   );

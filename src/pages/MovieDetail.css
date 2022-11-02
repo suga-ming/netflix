@@ -103,6 +103,7 @@
 .review-area {
   border: 3px solid white;
   margin: 20px 20px 0 20px;
+  /* width: 700px; */
 }
 
 .reviw-text {

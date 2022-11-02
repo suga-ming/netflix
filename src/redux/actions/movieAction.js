@@ -52,16 +52,11 @@ function getMoviesDetail(id) {
       );
       console.log("제발", reviewApi);
 
-      // https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
-
-      // console.log("리뷰다2", genreApi);
-      // console.log("리뷰다", reviewApi);
-
       let [reviewList] = await Promise.all([reviewApi]);
       dispatch({
         type: "GET_MOVIES_DETAIL_SUCCESS",
         payload: {
-          reviewList: reviewList.data,
+          reviewList: reviewList.data.results,
         },
       });
     } catch (error) {
