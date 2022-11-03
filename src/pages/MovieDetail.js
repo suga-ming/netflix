@@ -7,14 +7,10 @@ import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { movieAction } from "../redux/actions/movieAction";
 
 const MovieDetail = (item) => {
-  const location = useLocation();
-  const movie = location.state.value;
-  console.log("템템", movie);
-
   const dispatch = useDispatch();
   let { id } = useParams();
 
@@ -23,9 +19,12 @@ const MovieDetail = (item) => {
     dispatch(movieAction.getMoviesDetail(id));
   }, []);
 
-  const { reviewList, genreList } = useSelector((state) => state.movie);
+  const { reviewList, genreList, movieList } = useSelector(
+    (state) => state.movie
+  );
   console.log("뭐양ㅇ", reviewList);
   console.log("뭐양ㅇㅎㅎ", genreList);
+  console.log("뭐양zzzzz", movieList);
 
   return (
     <div className="movie-detail-container">
@@ -33,55 +32,53 @@ const MovieDetail = (item) => {
         <div className="movie-datail-img">
           <img
             width={440}
-            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
+            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movieList.poster_path}`}
           ></img>
         </div>
         <div>
           <div className="badge-area">
-            {movie?.genre_ids?.map((id) => (
-              <div className="movie-genre-badge">
-                {genreList?.find((item) => item?.id == id).name}
-              </div>
+            {movieList?.genres?.map((genre) => (
+              <div className="movie-genre-badge">{genre.name}</div>
             ))}
           </div>
-          <div className="movie-detail-title">{movie.title}</div>
+          <div className="movie-detail-title">{movieList.title}</div>
           <div className="movie-detail-vote">
             <div className="movie-detail-star">
               <img className="star" src={star} width={15}></img>
-              {movie.vote_average}
+              {movieList.vote_average}
             </div>
             <div>
               <FontAwesomeIcon icon={faPeopleGroup} className="people" />
-              <span className="attendance">{movie.popularity}</span>
+              <span className="attendance">{movieList.popularity}</span>
             </div>
             <div className="movie-detail-adult">Under 18</div>
           </div>
-          <div className="movie-story">{movie.overview}</div>
+          <div className="movie-story">{movieList.overview}</div>
           <div className="movie-info">
-            {/* <div className="movie-info-badge-area">
+            <div className="movie-info-badge-area">
               <Badge className="movie-info-badge" bg="danger">
                 Budget
               </Badge>
-              <span>$1999999</span>
+              <span>${movieList.budget}</span>
             </div>
             <div className="movie-info-badge-area">
               <Badge className="movie-info-badge" bg="danger">
                 Revenue
               </Badge>
-              <span>$2999999</span>
-            </div> */}
+              <span>${movieList.revenue}</span>
+            </div>
             <div className="movie-info-badge-area">
               <Badge className="movie-info-badge" bg="danger">
                 Release Day
               </Badge>
-              <span>{movie.release_date}</span>
+              <span>{movieList.release_date}</span>
             </div>
-            {/* <div className="movie-info-badge-area">
+            <div className="movie-info-badge-area">
               <Badge className="movie-info-badge" bg="danger">
                 Time
               </Badge>
-              <span>12</span>
-            </div> */}
+              <span>{movieList.runtime}</span>
+            </div>
           </div>
           <div>
             <FontAwesomeIcon icon={faFilm} className="trailer" />
@@ -92,7 +89,7 @@ const MovieDetail = (item) => {
       <div className="review-container">
         <Button className="review-button" variant="danger">
           REVIEWS ({reviewList.length})
-        </Button>{" "}
+        </Button>
         <div className="ft">
           <div className="review-area">
             {reviewList.map((item) => (
