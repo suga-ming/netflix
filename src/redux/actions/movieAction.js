@@ -55,12 +55,21 @@ function getMoviesDetail(id) {
         `/movie/${id}?api_key=${API_KEY}&language=en-US`
       );
 
-      let [reviewList, movieList] = await Promise.all([reviewApi, movieApi]);
+      const relatedMovieApi = api.get(
+        `/movie/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`
+      );
+
+      let [reviewList, movieList, relatedMovieList] = await Promise.all([
+        reviewApi,
+        movieApi,
+        relatedMovieApi,
+      ]);
       dispatch({
         type: "GET_MOVIES_DETAIL_SUCCESS",
         payload: {
           reviewList: reviewList.data.results,
           movieList: movieList.data,
+          relatedMovieList: relatedMovieList.data.results,
         },
       });
     } catch (error) {

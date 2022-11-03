@@ -1,12 +1,16 @@
 * {
+  /* color: white; */
   color: white;
+}
+
+.d {
+  background-color: black;
 }
 
 .wrap {
   margin: 0;
   padding: 0;
   width: 100%;
-  background-color: black;
 }
 
 .nav-item {
@@ -34,4 +38,11 @@
 .movie-title {
   padding-top: 20px;
   padding-bottom: 50px;
+}
+
+.loading-area {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }

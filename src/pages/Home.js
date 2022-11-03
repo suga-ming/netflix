@@ -21,10 +21,14 @@ const Home = () => {
   //true : 데이터 도착 전
   //false : 데이터 도착 후, 에러가 났을 때
   if (loading) {
-    return <ClipLoader color="#e50914" loading={loading} size={150} />;
+    return (
+      <div className="loading-area">
+        <ClipLoader color="#e50914" loading={loading} size={150} />
+      </div>
+    );
   }
   return (
-    <div>
+    <div className="d">
       <Banner movie={popularMovies.results[0]} />
       <div className="wrap">
         <div className="card-box">
