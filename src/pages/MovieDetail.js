@@ -45,7 +45,7 @@ const MovieDetail = (item) => {
           <div className="movie-detail-vote">
             <div className="movie-detail-star">
               <img className="star" src={star} width={15}></img>
-              {movieList.vote_average}
+              {movieList.vote_average.toFixed(1)}
             </div>
             <div>
               <FontAwesomeIcon icon={faPeopleGroup} className="people" />
