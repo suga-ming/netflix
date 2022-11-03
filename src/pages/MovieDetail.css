@@ -22,7 +22,7 @@
   background-color: rgb(221, 52, 68);
   padding: 5px;
   font-size: 13px;
-  margin: 0 10px;
+  margin-right: 10px;
   border-radius: 10px;
   height: 30px;
   display: flex;
@@ -31,6 +31,8 @@
 
 .movie-detail-title {
   font-size: 70px;
+  width: 500px;
+  line-height: 72px;
 }
 
 .movie-detail-vote {
@@ -93,8 +95,12 @@
   margin-top: 30px;
 }
 
+.review-container {
+  margin-top: 70px;
+}
+
 .review-button {
-  margin-left: 20px;
+  margin-left: 220px;
   border-radius: 2px;
   height: 50px;
   width: 170px;
@@ -103,7 +109,7 @@
 .review-area {
   border: 3px solid white;
   margin: 20px 20px 0 20px;
-  /* width: 700px; */
+  width: 1000px;
 }
 
 .reviw-text {
@@ -114,4 +120,11 @@
 .reviw-text:last-child {
   border: none;
   padding-bottom: 70px;
+}
+
+.ft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -13,7 +13,7 @@ const Navigation = () => {
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <img width={70} src={logo}></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />

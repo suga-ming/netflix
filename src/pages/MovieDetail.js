@@ -7,55 +7,58 @@ import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { movieAction } from "../redux/actions/movieAction";
 
-const MovieDetail = () => {
+const MovieDetail = (item) => {
+  const location = useLocation();
+  const movie = location.state.value;
+  console.log("템템", movie);
+
   const dispatch = useDispatch();
   let { id } = useParams();
+
   useEffect(() => {
     console.log("시작");
     dispatch(movieAction.getMoviesDetail(id));
   }, []);
-  const { reviewList } = useSelector((state) => state.movie);
+
+  const { reviewList, genreList } = useSelector((state) => state.movie);
   console.log("뭐양ㅇ", reviewList);
+  console.log("뭐양ㅇㅎㅎ", genreList);
+
   return (
     <div className="movie-detail-container">
       <div className="Movie-detail-area">
         <div className="movie-datail-img">
           <img
-            width={400}
-            src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/cC1wNkQpvdkQPqmY5Io9HzglrlB.jpg"
+            width={440}
+            src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`}
           ></img>
         </div>
         <div>
           <div className="badge-area">
-            <div className="movie-genre-badge">Action</div>
-            <div className="movie-genre-badge">Action</div>
-            <div className="movie-genre-badge">Action</div>
+            {movie?.genre_ids?.map((id) => (
+              <div className="movie-genre-badge">
+                {genreList?.find((item) => item?.id == id).name}
+              </div>
+            ))}
           </div>
-          <div className="movie-detail-title">Sonics</div>
+          <div className="movie-detail-title">{movie.title}</div>
           <div className="movie-detail-vote">
             <div className="movie-detail-star">
-              <img className="star" src={star} width={15}></img>7.8
+              <img className="star" src={star} width={15}></img>
+              {movie.vote_average}
             </div>
             <div>
               <FontAwesomeIcon icon={faPeopleGroup} className="people" />
-              <span className="attendance">640,333</span>
+              <span className="attendance">{movie.popularity}</span>
             </div>
             <div className="movie-detail-adult">Under 18</div>
           </div>
-          <div className="movie-story">
-            dfjklaa umerating objects: 25, done. Counting objects: 100% (25/25),
-            done. Delta compression using up to 2 threads Compressing objects:
-            100% (12/12), done. Writing objects: 100% (13/13), 1.82 KiB | 1.82
-            MiB/s, done. Total 13 (delta 6), reused 0 (delta 0), pack-reused 0
-            remote: Resolving deltas: 100% (6/6), completed with 6 local
-            objects. To https://github.com/suga-ming/netflix.git
-            9f9f629..813e375 master maste
-          </div>
+          <div className="movie-story">{movie.overview}</div>
           <div className="movie-info">
-            <div className="movie-info-badge-area">
+            {/* <div className="movie-info-badge-area">
               <Badge className="movie-info-badge" bg="danger">
                 Budget
               </Badge>
@@ -66,19 +69,19 @@ const MovieDetail = () => {
                 Revenue
               </Badge>
               <span>$2999999</span>
-            </div>
+            </div> */}
             <div className="movie-info-badge-area">
               <Badge className="movie-info-badge" bg="danger">
                 Release Day
               </Badge>
-              <span>2022-03-30</span>
+              <span>{movie.release_date}</span>
             </div>
-            <div className="movie-info-badge-area">
+            {/* <div className="movie-info-badge-area">
               <Badge className="movie-info-badge" bg="danger">
                 Time
               </Badge>
               <span>12</span>
-            </div>
+            </div> */}
           </div>
           <div>
             <FontAwesomeIcon icon={faFilm} className="trailer" />
@@ -86,16 +89,20 @@ const MovieDetail = () => {
           </div>
         </div>
       </div>
-      <Button className="review-button" variant="danger">
-        REVIEWS (3)
-      </Button>{" "}
-      <div className="review-area">
-        {reviewList.map((item) => (
-          <div className="reviw-text">
-            <div>{item.author}</div>
-            <div>{item.content}</div>
+      <div className="review-container">
+        <Button className="review-button" variant="danger">
+          REVIEWS ({reviewList.length})
+        </Button>{" "}
+        <div className="ft">
+          <div className="review-area">
+            {reviewList.map((item) => (
+              <div className="reviw-text">
+                <div>{item?.author}</div>
+                <div>{item?.content}</div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

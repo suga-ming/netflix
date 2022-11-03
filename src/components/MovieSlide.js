@@ -4,7 +4,7 @@ import "react-multi-carousel/lib/styles.css";
 import MovieCard from "./MovieCard";
 
 const MovieSlide = ({ movies }) => {
-  console.log("movie", movies);
+  console.log("movie양", movies);
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
