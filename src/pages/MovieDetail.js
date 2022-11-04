@@ -10,13 +10,14 @@ import star from "../img/star.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm } from "@fortawesome/free-solid-svg-icons";
 import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
+import YouTube from "react-youtube";
 
 const MovieDetail = (item) => {
   const [show, setShow] = useState(false);
+  const [reviewVisible, setReviewVisible] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  // const handleShow = () => alert("안녕");
 
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -25,6 +26,10 @@ const MovieDetail = (item) => {
     console.log("시작");
     dispatch(movieAction.getMoviesDetail(id));
   }, []);
+
+  useEffect(() => {
+    console.log(reviewVisible);
+  }, [reviewVisible]);
 
   const { reviewList, movieList, relatedMovieList } = useSelector(
     (state) => state.movie
@@ -93,49 +98,61 @@ const MovieDetail = (item) => {
           </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton></Modal.Header>
-            <Modal.Body>예고편 보러가기</Modal.Body>
+            <Modal.Body>예고편을 보러가시겠습니까?</Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={handleClose}>
-                Save Changes
+              <Button variant="danger" onClick={handleClose}>
+                보러가기
               </Button>
             </Modal.Footer>
           </Modal>
         </div>
       </div>
       <div className="button-area">
-        <Button className="review-button" variant="danger">
+        <Button
+          className={reviewVisible ? "button-active" : "button-disabled"}
+          // style={{ background: reviewVisible ? "#dc3545" : "#0d6efd" }}
+          onClick={() => setReviewVisible(true)}
+        >
           REVIEWS ({reviewList.length})
         </Button>
-        <Button className="related-movie-button" variant="danger">
+        <Button
+          className="related-movie-button"
+          style={{ background: !reviewVisible ? "#dc3545" : "#0d6efd" }}
+          onClick={() => setReviewVisible(false)}
+        >
           RELATED MOVIES ({relatedMovieList.length})
         </Button>
       </div>
-      <div className="review-container">
-        <div className="review">
-          <div className="review-area">
-            {reviewList.map((item) => (
-              <div className="reviw-text">
-                <div>{item?.author}</div>
-                <div>{item?.content}</div>
-              </div>
+      {reviewVisible ? (
+        <div className="review-container">
+          <div className="review">
+            <div className="review-area">
+              {reviewList.map((item) => (
+                <div className="reviw-text">
+                  <div>{item?.author}</div>
+                  <div>{item?.content}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="related-movie-area">
+          <div className="related-movie">
+            {relatedMovieList.map((movie) => (
+              <img
+                className="related-movie-img"
+                width={480}
+                height={200}
+                src={`https://www.themoviedb.org/t/p/w710_and_h400_multi_faces${movie.poster_path}`}
+              ></img>
             ))}
           </div>
         </div>
-      </div>
-      <div className="related-movie-area">
-        <div className="related-movie">
-          {relatedMovieList.map((movie) => (
-            <img
-              className="related-movie-img"
-              width={400}
-              src={`https://www.themoviedb.org/t/p/w710_and_h400_multi_faces${movie.poster_path}`}
-            ></img>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -111,6 +111,13 @@
   width: 170px;
 }
 
+.button-active {
+  background-color: purple;
+}
+
+.button-disableds {
+  background-color: red;
+}
 .related-movie-button {
   border-radius: 1px;
   height: 50px;
@@ -129,8 +136,6 @@
   border: 3px solid white;
   margin: 20px 20px 0 20px;
   width: 1000px;
-  overflow: scroll;
-  height: 700px;
 }
 
 .reviw-text {
@@ -154,9 +159,7 @@
   /* display: flex;
   flex-direction: column;
   align-items: center; */
-  width: 800px;
-  height: 850px;
-  overflow: hidden;
+  width: 1000px;
 }
 
 .related-movie-img {
@@ -166,4 +169,18 @@
 .related-movie-area {
   display: flex;
   justify-content: center;
+}
+
+.modal-header {
+  border: none;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: center;
+  color: #e50914;
+}
+
+.modal-footer {
+  border: none;
 }
