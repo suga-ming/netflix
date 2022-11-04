@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./MovieDetail.css";
 import { movieAction } from "../redux/actions/movieAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,12 +32,12 @@ const MovieDetail = (item) => {
     console.log(reviewVisible);
   }, [reviewVisible]);
 
-  const { reviewList, movieList, relatedMovieList } = useSelector(
-    (state) => state.movie
-  );
+  const { reviewList, movieList, relatedMovieList, movieVedioList } =
+    useSelector((state) => state.movie);
   console.log("reviewList", reviewList);
   console.log("movieList", movieList);
   console.log("relatedMovieList", relatedMovieList);
+  console.log("movieVedioList", movieVedioList);
 
   return (
     <div className="movie-detail-container">
@@ -98,33 +99,56 @@ const MovieDetail = (item) => {
           </div>
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton></Modal.Header>
-            <Modal.Body>예고편을 보러가시겠습니까?</Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="danger" onClick={handleClose}>
+            <Modal.Body>
+              <div className="modal-text">예고편을 보러가시겠습니까?</div>
+              <Button
+                variant="danger"
+                onClick={handleClose}
+                className="modal-button"
+              >
                 보러가기
               </Button>
-            </Modal.Footer>
+            </Modal.Body>
           </Modal>
+          <YouTube
+            //videoId : https://www.youtube.com/watch?v={videoId} 유튜브 링크의 끝부분에 있는 고유한 아이디
+            // videoId={`https://www.youtube.com/watch?v=${movieVedioList.id}`}
+            videoId={movieVedioList.id}
+            //opts(옵션들): 플레이어의 크기나 다양한 플레이어 매개 변수를 사용할 수 있음.
+            //밑에서 더 설명하겠습니다.
+            opts={{
+              width: "560",
+              height: "315",
+              playerVars: {
+                autoplay: 1, //자동재생 O
+                rel: 0, //관련 동영상 표시하지 않음 (근데 별로 쓸모 없는듯..)
+                modestbranding: 1, // 컨트롤 바에 youtube 로고를 표시하지 않음
+              },
+            }}
+            //이벤트 리스너
+            onEnd={(e) => {
+              e.target.stopVideo(0);
+            }}
+          />
         </div>
       </div>
       <div className="button-area">
-        <Button
-          className={reviewVisible ? "button-active" : "button-disabled"}
-          // style={{ background: reviewVisible ? "#dc3545" : "#0d6efd" }}
+        <button
+          className={
+            reviewVisible ? "button-review-active" : "button-review-disabled"
+          }
           onClick={() => setReviewVisible(true)}
         >
           REVIEWS ({reviewList.length})
-        </Button>
-        <Button
-          className="related-movie-button"
-          style={{ background: !reviewVisible ? "#dc3545" : "#0d6efd" }}
+        </button>
+        <button
+          className={
+            !reviewVisible ? "button-related-active" : "button-related-disabled"
+          }
           onClick={() => setReviewVisible(false)}
         >
           RELATED MOVIES ({relatedMovieList.length})
-        </Button>
+        </button>
       </div>
       {reviewVisible ? (
         <div className="review-container">

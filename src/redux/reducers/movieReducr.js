@@ -7,6 +7,7 @@ let initialState = {
   reviewList: [],
   movieList: [],
   relatedMovieList: [],
+  movieVedioList: [],
 };
 
 function movieReducer(state = initialState, action) {
@@ -37,6 +38,7 @@ function movieReducer(state = initialState, action) {
         reviewList: payload.reviewList,
         movieList: payload.movieList,
         relatedMovieList: payload.relatedMovieList,
+        movieVedioList: payload.movieVedioList,
       };
 
     default:

@@ -1,0 +1,9 @@
+.movies-container {
+  background-color: black;
+  height: 100vh;
+}
+
+.movies-card {
+  width: 300px;
+  background-color: blue;
+}

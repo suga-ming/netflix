@@ -104,24 +104,44 @@
   margin-top: 70px;
 }
 
-.review-button {
+.button-review-active {
   margin-right: 10px;
   border-radius: 1px;
   height: 50px;
   width: 170px;
+  background-color: #e50914;
+  border-radius: 2px;
+  border: none;
 }
 
-.button-active {
-  background-color: purple;
+.button-review-disabled {
+  margin-right: 10px;
+  border-radius: 1px;
+  height: 50px;
+  width: 170px;
+  background-color: white;
+  color: gray;
+  border-radius: 2px;
+  border: none;
 }
 
-.button-disableds {
-  background-color: red;
-}
-.related-movie-button {
+.button-related-active {
+  margin-right: 10px;
   border-radius: 1px;
   height: 50px;
   width: 230px;
+  background-color: #e50914;
+  border: none;
+}
+
+.button-related-disabled {
+  margin-right: 10px;
+  border-radius: 1px;
+  height: 50px;
+  width: 230px;
+  background-color: white;
+  color: gray;
+  border: none;
 }
 
 .rt {
@@ -177,10 +197,16 @@
 
 .modal-body {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  color: #e50914;
 }
 
-.modal-footer {
-  border: none;
+.modal-text {
+  color: #e50914;
+  margin-bottom: 10px;
+}
+
+.modal-button {
+  margin-bottom: 20px;
 }
