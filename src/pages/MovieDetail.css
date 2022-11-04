@@ -191,6 +191,23 @@
   justify-content: center;
 }
 
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 1200px;
+}
+
+.modal-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-header {
   border: none;
 }
@@ -209,4 +226,8 @@
 
 .modal-button {
   margin-bottom: 20px;
+}
+
+.youtube {
+  /* position: absolute; */
 }

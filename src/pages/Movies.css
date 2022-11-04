@@ -1,9 +1,41 @@
 .movies-container {
   background-color: black;
-  height: 100vh;
+  /* height: 100vh; */
+  display: flex;
+}
+
+.movies-card-category {
+  margin-left: 300px;
+}
+
+.sort {
+  width: 350px;
+  height: 50px;
+  border: 1px solid white;
+}
+
+.movies-card-container {
+  width: 300px;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
 }
 
 .movies-card {
-  width: 300px;
-  background-color: blue;
+  padding: 30px 0 30px 20px;
+}
+
+.movies-card-area {
+  display: flex;
+  /* flex-direction: column; */
+  width: 800px;
+}
+
+.flex-center {
+  display: flex;
+}
+
+.movies-card-title {
+  font-size: 30px;
 }

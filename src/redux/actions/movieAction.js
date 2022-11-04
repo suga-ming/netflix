@@ -76,7 +76,7 @@ function getMoviesDetail(id) {
           reviewList: reviewList.data.results,
           movieList: movieList.data,
           relatedMovieList: relatedMovieList.data.results,
-          movieVedioList: movieVedioList.data,
+          movieVedioList: movieVedioList.data.results,
         },
       });
     } catch (error) {
