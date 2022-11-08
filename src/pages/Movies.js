@@ -8,14 +8,25 @@ import "./Movies.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { useSearchParams } from "react-router-dom";
 
 const Movies = () => {
   const dispatch = useDispatch();
+  const [query, setQuery] = useSearchParams();
+  const getSearchMovies = () => {
+    let searchQuery = query.get("q") || "";
+    console.log("쿼리", searchQuery);
+    dispatch(movieAction.getSearchMovies(searchQuery));
+  };
 
   useEffect(() => {
     console.log("시작");
     dispatch(movieAction.getMovies());
   }, []);
+
+  useEffect(() => {
+    getSearchMovies();
+  }, [query]);
 
   const {
     popularMovies,
@@ -41,7 +52,7 @@ const Movies = () => {
         </div>
         <div className="movies-card-area">
           <Row>
-            {popularMovies?.results.map((item) => (
+            {popularMovies?.results?.map((item) => (
               <Col lg={5}>
                 <MoviesCard item={item} />
               </Col>

@@ -8,7 +8,7 @@ let initialState = {
   movieList: [],
   relatedMovieList: [],
   movieVedioList: [],
-  // searchMovieList: [],
+  searchMovieList: [],
 };
 
 function movieReducer(state = initialState, action) {
@@ -42,11 +42,11 @@ function movieReducer(state = initialState, action) {
         relatedMovieList: payload.relatedMovieList,
         movieVedioList: payload.movieVedioList,
       };
-    // case "GET_SEARCH_MOVIES_SUCCESS":
-    //   return {
-    //     ...state,
-    //     searchMovieList: payload.searchMovieList,
-    //   };
+    case "GET_SEARCH_MOVIES_SUCCESS":
+      return {
+        ...state,
+        searchMovieList: payload.searchMovieList,
+      };
 
     default:
       return { ...state };

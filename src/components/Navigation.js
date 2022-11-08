@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import logo from "../img/netflix-logo.png";
+import { movieAction } from "../redux/actions/movieAction";
+import { useDispatch } from "react-redux";
 
 const Navigation = () => {
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const goSearchMovies = () => {
+    navigate(`/movies/?${search}`);
+    setSearch("");
+  };
+
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -36,8 +46,12 @@ const Navigation = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
-              <Button variant="danger">Search</Button>
+              <Button variant="danger" onClick={goSearchMovies}>
+                Search
+              </Button>
             </Form>
           </Navbar.Collapse>
         </Container>
