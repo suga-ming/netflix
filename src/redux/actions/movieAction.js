@@ -91,9 +91,8 @@ function getSearchMovies(searchQuery) {
     try {
       dispatch({ type: "GET_SEARCH_MOVIES_REQUEST" });
       const searchMovieApi = api.get(
-        `/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}page=1&include_adult=false`
+        `/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false`
       );
-      // search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
 
       let [searchMovieList] = await Promise.all([searchMovieApi]);
       dispatch({
@@ -108,5 +107,6 @@ function getSearchMovies(searchQuery) {
     }
   };
 }
+// `https://api.themoviedb.org/3/search/movie?api_key=061fd4148b8e00ffff2a69c4b72b2d15&language=en-US&query=love&page=1&include_adult=false`
 
 export const movieAction = { getMovies, getMoviesDetail, getSearchMovies };

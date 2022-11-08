@@ -28,10 +28,9 @@ const Movies = () => {
     getSearchMovies();
   }, [query]);
 
-  const {
-    popularMovies,
-    // searchMovieList,
-  } = useSelector((state) => state.movie);
+  const { popularMovies, searchMovieList } = useSelector(
+    (state) => state.movie
+  );
   const [page, setPage] = useState(1);
 
   const handlePageChange = (page) => {
@@ -39,7 +38,7 @@ const Movies = () => {
   };
 
   console.log("popularMovies", popularMovies.results);
-  // console.log("searchMovieList", searchMovieList);
+  console.log("searchMovieList", searchMovieList);
   return (
     <div className="movies-entire">
       <div className="movies-container">

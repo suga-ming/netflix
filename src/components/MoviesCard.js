@@ -7,8 +7,8 @@ import Badge from "react-bootstrap/Badge";
 
 const MoviesCard = ({ item }) => {
   const { genreList } = useSelector((state) => state.movie);
-  console.log("뉴", genreList);
-  console.log("wow", item);
+  // console.log("뉴", genreList);
+  // console.log("wow", item);
   return (
     <div>
       <div

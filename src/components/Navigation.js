@@ -15,7 +15,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const goSearchMovies = () => {
-    navigate(`/movies/?${search}`);
+    navigate(`/movies/?q=${search}`);
     setSearch("");
   };
 
