@@ -8,11 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import logo from "../img/netflix-logo.png";
 import { movieAction } from "../redux/actions/movieAction";
-import { useDispatch } from "react-redux";
 
 const Navigation = () => {
   const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const goSearchMovies = () => {
     navigate(`/movies/?q=${search}`);
