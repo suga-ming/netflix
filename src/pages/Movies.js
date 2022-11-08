@@ -37,7 +37,7 @@ const Movies = () => {
     setPage(page);
   };
 
-  console.log("popularMovies", popularMovies.results);
+  console.log("popularMovies", popularMovies);
   console.log("searchMovieList", searchMovieList);
   return (
     <div className="movies-entire">
@@ -50,13 +50,23 @@ const Movies = () => {
           <div className="sort">Filter</div>
         </div>
         <div className="movies-card-area">
-          <Row>
-            {popularMovies?.results?.map((item) => (
-              <Col lg={5}>
-                <MoviesCard item={item} />
-              </Col>
-            ))}
-          </Row>
+          {searchMovieList ? (
+            <Row>
+              {searchMovieList?.results?.map((item) => (
+                <Col lg={5}>
+                  <MoviesCard item={item} />
+                </Col>
+              ))}
+            </Row>
+          ) : (
+            <Row>
+              {popularMovies?.results?.map((item) => (
+                <Col lg={5}>
+                  <MoviesCard item={item} />
+                </Col>
+              ))}
+            </Row>
+          )}
         </div>
       </div>
       <div>
