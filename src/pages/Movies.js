@@ -17,9 +17,10 @@ const Movies = () => {
     dispatch(movieAction.getMovies());
   }, []);
 
-  const { popularMovies, searchMovieList } = useSelector(
-    (state) => state.movie
-  );
+  const {
+    popularMovies,
+    // searchMovieList,
+  } = useSelector((state) => state.movie);
   const [page, setPage] = useState(1);
 
   const handlePageChange = (page) => {
@@ -32,17 +33,20 @@ const Movies = () => {
     <div className="movies-entire">
       <div className="movies-container">
         <div className="movies-card-category">
+          <DropdownButton id="dropdown-basic-button" title="Sort">
+            <Dropdown.Item href="#/action-1">Sort</Dropdown.Item>
+          </DropdownButton>
           <div className="sort">Sort</div>
           <div className="sort">Filter</div>
         </div>
         <div className="movies-card-area">
-          {/* <Row>
-            {popularMovies.results.map((item) => (
+          <Row>
+            {popularMovies?.results.map((item) => (
               <Col lg={5}>
                 <MoviesCard item={item} />
               </Col>
             ))}
-          </Row> */}
+          </Row>
         </div>
       </div>
       <div>
